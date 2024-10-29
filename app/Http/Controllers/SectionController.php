@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSectionRequest;
 use App\Models\Section;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -12,7 +14,9 @@ class SectionController extends Controller
      */
     public function index()
     {
-        //
+        return view('sections.index', [
+            'section' => Section::all()
+        ]);
     }
 
     /**
@@ -20,15 +24,19 @@ class SectionController extends Controller
      */
     public function create()
     {
-        //
+        return view('sections.create', [
+            'semesters' => Semester::all()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSectionRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        Section::create($validatedData);
+        return redirect()->route('sections.index')->with('success', 'New record has been saved!');
     }
 
     /**
@@ -44,7 +52,10 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {
-        //
+        return view('sections.edit', [
+            'section' => $section,
+            'semesters' => Semester::all()
+        ]);
     }
 
     /**

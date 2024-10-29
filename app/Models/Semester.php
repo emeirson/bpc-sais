@@ -14,4 +14,8 @@ class Semester extends Model
     {
         return $this->belongsTo(AcademicYear::class);
     }
+    public function details()
+    {
+        return 'AY: ' . $this->academicYear->getYear() . ' / ' . strtoupper($this->name);
+    }
 }
