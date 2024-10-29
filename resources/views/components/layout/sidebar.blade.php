@@ -69,6 +69,9 @@
                     <li>
                         <x-sidebar.link href="{{ route('instructors.index') }}">Instructors</x-sidebar.link>
                     </li>
+                    <li>
+                        <x-sidebar.link href="{{ route('semesters.index') }}">Semester</x-sidebar.link>
+                    </li>
                 </ul>
             </li>
             <li>
