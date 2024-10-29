@@ -25,9 +25,9 @@ class StoreCourseRequest extends FormRequest
             'course_code' => 'unique:courses,course_code|string|required',
             'description' => 'required|string|max:255',
             'units' => 'required|integer|min:1',
-            'lecture_hours' => 'required|min:0',
-            'laboratory_hours' => 'required|min:0',
-            'prerequisite_course_id' => 'exists:courses,id'
+            'lecture_hours' => 'required|integer|min:0',
+            'laboratory_hours' => 'required|integer|min:0',
+            'prerequisite_course_id' => 'nullable'
         ];
     }
 }

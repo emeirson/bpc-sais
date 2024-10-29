@@ -4,6 +4,7 @@ use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ProgramCoursesController;
 use App\Http\Controllers\StudentController;
@@ -23,6 +24,7 @@ Route::middleware([
     Route::resource('departments', DepartmentController::class);
     Route::resource('programs', ProgramController::class);
     Route::resource('students', StudentController::class);
+    Route::resource('instructors', InstructorController::class);
     Route::resource('courses', CourseController::class);
     Route::get('programs/{program}/courses', [ProgramCoursesController::class, 'edit'])->name('program-courses.edit');
     Route::patch('programs/{program}/courses', [ProgramCoursesController::class, 'update'])->name('program-courses.update');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProgramRequest;
+use App\Http\Requests\UpdateProgramRequest;
 use App\Models\Course;
 use App\Models\Department;
 use App\Models\Program;
@@ -55,15 +56,21 @@ class ProgramController extends Controller
      */
     public function edit(Program $program)
     {
-        //
+        return view('programs.edit', [
+            'program' => $program,
+            'departments' => Department::all()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Program $program)
+    public function update(UpdateProgramRequest $request, Program $program)
     {
-        //
+        $validatedData = $request->validated();
+        $program->update($validatedData);
+
+        return redirect()->route('programs.index')->with('success', 'Record updated successfully.');
     }
 
     /**

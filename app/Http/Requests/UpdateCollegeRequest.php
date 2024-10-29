@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateProgramCoursesRequest extends FormRequest
+class UpdateCollegeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,16 +22,8 @@ class UpdateProgramCoursesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'course_id' => [
-                'required',
-                'exists:courses,id',
-                Rule::unique('course_program')
-                    ->where(function ($query) {
-                        return $query->where('program_id', $this->program->id);
-                    })
-            ],
-            'year_level' => 'required',
-            'semester' => 'required'
+            'college_code' => 'required|unique:colleges,college_code,' . $this->college->id,
+            'description' => 'required'
         ];
     }
 }

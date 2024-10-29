@@ -20,7 +20,7 @@
         </div>
         <div
             class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-            <x-button.create href="{{ route('programs.create') }}" name="Add program" />
+            <x-button.create href="{{ route('instructors.create') }}" name="Add instructor" />
             <div class="flex items-center space-x-3 w-full md:w-auto">
                 <button id="actionsDropdownButton" data-dropdown-toggle="actionsDropdown"
                     class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
@@ -108,45 +108,36 @@
     </div>
     <div class="overflow-x-auto border">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <x-table.thead :headers="['#', 'code', 'name', 'department', 'courses']" />
+            <x-table.thead :headers="['#', 'instructor id', 'fullname', 'birthdate', 'sex', 'License No.']" />
             <tbody>
 
-                @forelse ($programs as $program)
-                    <tr class="border-b dark:border-gray-700">
+                @forelse ($instructors as $instructor)
+                    <tr class="border-b dark:border-gray-700" wire:key="instructor-{{ $instructor->id }}">
 
                         <x-table.data>
-                            {{ $programs->firstItem() + $loop->index }}
+                            <img src="{{ $instructor->profile_photo_url }}" alt="">
+                            {{ $instructors->firstItem() + $loop->index }}
                         </x-table.data>
                         <x-table.data>
-                            {{ $program->program_code }}
+                            {{ $instructor->instructor_code }}
                         </x-table.data>
                         <x-table.data>
-                            {{ $program->description }}
+                            {{ $instructor->fullname() }}
                         </x-table.data>
                         <x-table.data>
-                            {{ $program->department->description }}
+                            {{ $instructor->birthdate }}
                         </x-table.data>
                         <x-table.data>
-                            <div class="flex items-center gap-x-2">
-                                @forelse ($program->courses as $course)
-                                    {{ $course->course_code }}
-                                @empty
-                                @endforelse
-                                <a href="{{ route('program-courses.edit', $program->id) }}">
-                                    <svg class="w-5 h-5 text-gray-600 hover:cursor-pointer dark:text-white"
-                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                        height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M12 7.757v8.486M7.757 12h8.486M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                    </svg>
-                                </a>
-                            </div>
+                            {{ strtoupper($instructor->sex) }}
+                        </x-table.data>
+                        <x-table.data>
+                            {{ $instructor->professional_no }}
                         </x-table.data>
 
-                        <td class="px-4 py-3 flex items-center justify-end">
-                            <button id="dropdown-button" data-dropdown-toggle="dropdown-{{ $loop->iteration }}"
-                                data-dropdown-placement="top"
+                        <td class="px-4 py-3 flex items-center justify-end gap-x-2">
+                            <button id="dropdown-button-{{ $loop->iteration }}"
+                                data-dropdown-toggle="dropdown-{{ $loop->iteration }}"
+                                wire:key="dropdown-button-{{ $instructor->id }}" data-dropdown-placement="top"
                                 class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
                                 type="button">
                                 <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
@@ -155,22 +146,22 @@
                                         d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
                                 </svg>
                             </button>
-                            <div id="dropdown-{{ $loop->iteration }}"
+                            <div id="dropdown-{{ $loop->iteration }}" wire:key="dropdown-menu-{{ $instructor->id }}"
                                 class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
                                 <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                                    aria-labelledby="dropdown-button">
+                                    aria-labelledby="dropdown-button-{{ $loop->iteration }}">
                                     <li>
-                                        <a href="{{ route('programs.show', $program->id) }}"
+                                        <a href="{{ route('instructors.show', $instructor->id) }}"
                                             class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('programs.edit', $program->id) }}"
+                                        <a href="{{ route('instructors.edit', $instructor->id) }}"
                                             class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                     </li>
                                 </ul>
                                 <div class="py-1">
                                     <form id="delete-form-{{ $loop->index }}"
-                                        action="{{ route('programs.destroy', $program->id) }}" method="post">
+                                        action="{{ route('instructors.destroy', $instructor->id) }}" method="post">
                                         @csrf
                                         @method('Delete')
                                     </form>
@@ -185,7 +176,6 @@
                 @endforelse
             </tbody>
         </table>
-        <x-table.pagination>{{ $programs->links() }} </x-table.pagination>
+        <x-table.pagination>{{ $instructors->links() }} </x-table.pagination>
     </div>
-</div>
 </div>

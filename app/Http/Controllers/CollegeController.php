@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCollegeRequest;
+use App\Http\Requests\UpdateCollegeRequest;
 use App\Models\College;
 use Illuminate\Http\Request;
 
@@ -50,15 +51,20 @@ class CollegeController extends Controller
      */
     public function edit(College $college)
     {
-        //
+        return view('colleges.edit', [
+            'college' => $college
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, College $college)
+    public function update(UpdateCollegeRequest $request, College $college)
     {
-        //
+        $validatedData = $request->validated();
+        $college->update($validatedData);
+
+        return redirect()->route('colleges.index')->with('success', 'Record updated successfully.');
     }
 
     /**

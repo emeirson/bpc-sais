@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use function PHPUnit\Framework\isNull;
+
 class Student extends Model
 {
     use HasFactory;
@@ -71,8 +73,13 @@ class Student extends Model
 
         // Get the all student IDs for the current year, sort in desc order and get the first entry
         $count = self::where('student_code', 'like', "{$year}-{$schoolCode}-%")->orderBy('student_code', 'desc')->pluck('student_code')->first();
-        preg_match("/{$schoolCode}-0*(\d+)/", $count, $matches);
-        $count = (int) $matches[1] + 1;
+
+        if (($count)) {
+            preg_match("/{$schoolCode}-0*(\d+)/", $count, $matches);
+            $count = (int) $matches[1] + 1;
+        } else {
+            $count = '1';
+        }
 
         // generate new id
         $newNumber = str_pad($count, 4, '0', STR_PAD_LEFT);

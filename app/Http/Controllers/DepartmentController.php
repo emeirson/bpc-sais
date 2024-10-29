@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDepartmentRequest;
+use App\Http\Requests\UpdateDepartmentRequest;
 use App\Models\College;
 use App\Models\Department;
 use Illuminate\Http\Request;
@@ -51,15 +52,21 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+        return view('departments.edit', [
+            'department' => $department,
+            'colleges' => College::all()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Department $department)
+    public function update(UpdateDepartmentRequest $request, Department $department)
     {
-        //
+        $validatedData = $request->validated();
+        $department->update($validatedData);
+
+        return redirect()->route('departments.index')->with('success', 'Record updated successfully.');
     }
 
     /**
