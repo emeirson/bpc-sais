@@ -46,8 +46,8 @@
         </div>
     </section>
     <section class="bg-white dark:bg-gray-900 p-3 sm:p-5">
-        <div class="max-w-screen-6xl">
-            <livewire:program-courses-table :courses="$program->courses" />
+        <div class="max-w-screen-6xl pb-20">
+            <livewire:program-courses-table :program="$program" />
         </div>
     </section>
 </x-layout.app>

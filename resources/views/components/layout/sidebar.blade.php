@@ -75,6 +75,9 @@
                     <li>
                         <x-sidebar.link href="{{ route('sections.index') }}">Section</x-sidebar.link>
                     </li>
+                    <li>
+                        <x-sidebar.link href="{{ route('rooms.index') }}">Rooms</x-sidebar.link>
+                    </li>
                 </ul>
             </li>
             <li>

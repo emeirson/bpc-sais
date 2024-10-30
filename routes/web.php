@@ -8,6 +8,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ProgramCoursesController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StudentController;
@@ -32,6 +33,7 @@ Route::middleware([
     Route::resource('academic-years', AcademicYearController::class);
     Route::resource('semesters', SemesterController::class);
     Route::resource('sections', SectionController::class);
+    Route::resource('rooms', RoomController::class);
     Route::get('programs/{program}/courses', [ProgramCoursesController::class, 'edit'])->name('program-courses.edit');
     Route::patch('programs/{program}/courses', [ProgramCoursesController::class, 'update'])->name('program-courses.update');
 });
