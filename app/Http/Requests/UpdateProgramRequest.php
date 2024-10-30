@@ -22,7 +22,7 @@ class UpdateProgramRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'department_id' => 'required',
+            'college_id' => 'required',
             'program_code' => 'required|unique:programs,program_code,' . $this->program->id,
             'description' => 'required'
         ];

@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Program extends Model
 {
     protected $fillable = [
-        'department_id',
+        'college_id',
         'program_code',
         'description'
     ];
 
-    public function department()
+    public function college()
     {
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(College::class);
     }
 
     public function courses()

@@ -115,7 +115,7 @@
                     <tr class="border-b dark:border-gray-700" wire:key="college-{{ $college->id }}">
 
                         <x-table.data>
-                            {{ $colleges->firstItem() + $loop->index }}
+                            {{ $loop->iteration }}
                         </x-table.data>
                         <x-table.data>
                             {{ $college->college_code }}

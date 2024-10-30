@@ -11,19 +11,21 @@
                 @method('PATCH')
                 <div class="grid gap-4 sm:grid-cols-3 sm:gap-6">
                     <div class="sm:col-span-3">
-                        <x-form.label for="department_id" value="Department" />
-                        <select name="department_id" id="department_id"
+                        <x-form.label for="college_id" value="College" />
+                        <select name="college_id" id="college_id"
                             class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'>
-                            @foreach ($departments as $department)
-                                <option @selected(old('department_id') == $program->department_id) value="{{ $department->id }}">{{ $department->description }}</option>
+                            @foreach ($colleges as $college)
+                                <option @selected(old('college_id', $program->college_id) == $college->id) value="{{ $college->id }}">
+                                    {{ $college->description }}</option>
                             @endforeach
                         </select>
-                        <x-form.error for="department_id" />
+                        <x-form.error for="college_id" />
                     </div>
                     <div class="sm:col-span-1">
                         <x-form.label for="program_code" value="Program Code" />
                         <x-form.input type='text' id="program_code" name="program_code"
-                            value="{{ old('program_code', $program->program_code) }}" placeholder="Enter program code" />
+                            value="{{ old('program_code', $program->program_code) }}"
+                            placeholder="Enter program code" />
                         <x-form.error for="program_code" />
                     </div>
                     <div class="sm:col-span-2">

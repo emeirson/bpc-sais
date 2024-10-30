@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\College;
 use App\Models\Department;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Department::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(College::class)->constrained()->cascadeOnDelete();
             $table->string('program_code')->unique();
             $table->string('description');
             $table->timestamps();

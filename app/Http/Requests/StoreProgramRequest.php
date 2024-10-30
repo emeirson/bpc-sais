@@ -23,7 +23,7 @@ class StoreProgramRequest extends FormRequest
     {
         return [
             'program_code' => 'unique:programs,program_code|required',
-            'department_id' => 'exists:departments,id|required',
+            'college_id' => 'exists:colleges,id|required',
             'description' => 'required'
         ];
     }

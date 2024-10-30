@@ -108,14 +108,14 @@
     </div>
     <div class="overflow-x-auto border">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <x-table.thead :headers="['#', 'code', 'name', 'department', 'courses']" />
+            <x-table.thead :headers="['#', 'code', 'name', 'college', 'courses']" />
             <tbody>
 
                 @forelse ($programs as $program)
                     <tr class="border-b dark:border-gray-700">
 
                         <x-table.data>
-                            {{ $programs->firstItem() + $loop->index }}
+                            {{ $loop->iteration }}
                         </x-table.data>
                         <x-table.data>
                             {{ $program->program_code }}
@@ -124,7 +124,7 @@
                             {{ $program->description }}
                         </x-table.data>
                         <x-table.data>
-                            {{ $program->department->description }}
+                            {{ $program->college->description }}
                         </x-table.data>
                         <x-table.data>
                             <div class="flex items-center gap-x-2">

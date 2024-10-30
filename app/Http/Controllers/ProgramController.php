@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProgramRequest;
 use App\Http\Requests\UpdateProgramRequest;
+use App\Models\College;
 use App\Models\Course;
-use App\Models\Department;
 use App\Models\Program;
-use Illuminate\Http\Request;
 
 class ProgramController extends Controller
 {
@@ -17,7 +16,7 @@ class ProgramController extends Controller
     public function index()
     {
         return view('programs.index', [
-            'programs' => Program::latest()->with('department')->paginate(7)
+            'programs' => Program::latest()->with('college')->paginate(7)
         ]);
     }
 
@@ -27,7 +26,7 @@ class ProgramController extends Controller
     public function create()
     {
         return view('programs.create', [
-            'departments' => Department::all(),
+            'colleges' => College::all(),
             'courses' => Course::all()
         ]);
     }
@@ -58,7 +57,7 @@ class ProgramController extends Controller
     {
         return view('programs.edit', [
             'program' => $program,
-            'departments' => Department::all()
+            'colleges' => College::all()
         ]);
     }
 
