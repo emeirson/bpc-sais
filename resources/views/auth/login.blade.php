@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+            <img class="h-36 w-36" src="{{ asset('images/bpc-logo.png') }}" alt="BPC Logo">
         </x-slot>
 
         <x-validation-errors class="mb-4" />
