@@ -14,7 +14,6 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(College::class)->constrained()->cascadeOnDelete();
             $table->string('department_code')->unique();
             $table->string('description');
             $table->timestamps();

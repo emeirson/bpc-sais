@@ -23,7 +23,6 @@ class StoreDepartmentRequest extends FormRequest
     {
         return [
             'department_code' => 'unique:departments,department_code|required',
-            'college_id' => 'exists:colleges,id|required',
             'description' => 'required'
         ];
     }

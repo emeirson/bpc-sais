@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Department extends Model
 {
     protected $fillable = [
-        'college_id',
         'department_code',
         'description'
     ];
 
-    public function college()
+    public function courses()
     {
-        return $this->belongsTo(College::class);
+        return $this->hasMany(Course::class);
     }
 }

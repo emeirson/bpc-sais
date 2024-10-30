@@ -1,7 +1,7 @@
 <x-layout.app>
 
     <section class="bg-white dark:bg-gray-900 p-3 sm:p-5">
-        <x-shared.breadcrump :menu="['Management', 'course']" />
+        <x-shared.breadcrump :menu="['Management', 'Course']" />
     </section>
     <section class="bg-white dark:bg-gray-900 pb-20">
         <div class="px-8 max-w-6xl">
@@ -9,6 +9,28 @@
             <form action="{{ route('courses.store') }}" method="post">
                 @csrf
                 <div class="grid gap-4 sm:grid-cols-4 sm:gap-6">
+                    <div class="sm:col-span-2">
+                        <x-form.label for="college_id" value="College" />
+                        <select name="college_id" id="college_id"
+                            class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'>
+                            @foreach ($colleges as $college)
+                                <option @selected(old('college_id') == $college->id) value="{{ $college->id }}">
+                                    {{ $college->description }}</option>
+                            @endforeach
+                        </select>
+                        <x-form.error for="college_id" />
+                    </div>
+                    <div class="sm:col-span-2">
+                        <x-form.label for="department_id" value="Department" />
+                        <select name="department_id" id="department_id"
+                            class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'>
+                            @foreach ($departments as $department)
+                                <option @selected(old('department_id') == $department->id) value="{{ $department->id }}">
+                                    {{ $department->description }}</option>
+                            @endforeach
+                        </select>
+                        <x-form.error for="department_id" />
+                    </div>
                     <div class="sm:col-span-1">
                         <x-form.label for="course_code" value="Course Code" />
                         <x-form.input type='text' id="course_code" name="course_code"

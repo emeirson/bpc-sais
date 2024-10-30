@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
+use App\Models\College;
 use App\Models\Course;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -23,7 +25,9 @@ class CourseController extends Controller
     public function create()
     {
         return view('courses.create', [
-            'courses' => Course::all()
+            'courses' => Course::all(),
+            'departments' => Department::all(),
+            'colleges' => College::all(),
         ]);
     }
 
@@ -53,7 +57,9 @@ class CourseController extends Controller
     {
         return view('courses.edit', [
             'course' => $course,
-            'courses' => Course::all()
+            'courses' => Course::all(),
+            'departments' => Department::all(),
+            'colleges' => College::all(),
         ]);
     }
 

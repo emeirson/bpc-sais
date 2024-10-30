@@ -22,7 +22,6 @@ class UpdateDepartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'college_id' => 'required',
             'department_code' => 'required|unique:departments,department_code,' . $this->department->id,
             'description' => 'required'
         ];

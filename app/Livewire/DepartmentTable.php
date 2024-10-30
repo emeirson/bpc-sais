@@ -14,7 +14,7 @@ class DepartmentTable extends Component
     public function render()
     {
         return view('livewire.department-table', [
-            'departments' => Department::latest()->with('college')->where('description', 'like', "%{$this->search}%")->paginate(7)
+            'departments' => Department::latest()->where('description', 'like', "%{$this->search}%")->paginate(7)
         ]);
     }
 }

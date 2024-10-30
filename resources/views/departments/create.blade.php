@@ -9,12 +9,6 @@
             <form action="{{ route('departments.store') }}" method="post">
                 @csrf
                 <div class="grid gap-4 sm:grid-cols-3 sm:gap-6">
-                    <div class="sm:col-span-3">
-                        <x-form.label for="college_code" value="College" />
-                        <x-form.dropdown :collections="$colleges" name="college_id" column="college_id"
-                            placeholder="Select College" display="description" />
-                        <x-form.error for="college_id" />
-                    </div>
                     <div class="sm:col-span-1">
                         <x-form.label for="department_code" value="Department Code" />
                         <x-form.input type='text' id="department_code" name="department_code"

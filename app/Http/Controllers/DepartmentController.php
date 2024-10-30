@@ -23,9 +23,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view('departments.create', [
-            'colleges' => College::all()
-        ]);
+        return view('departments.create');
     }
 
     /**
@@ -54,7 +52,6 @@ class DepartmentController extends Controller
     {
         return view('departments.edit', [
             'department' => $department,
-            'colleges' => College::all()
         ]);
     }
 

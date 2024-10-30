@@ -22,6 +22,8 @@ class StoreCourseRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'college_id' => 'required',
+            'department_id' => 'required',
             'course_code' => 'unique:courses,course_code|string|required',
             'description' => 'required|string|max:255',
             'units' => 'required|integer|min:1',
