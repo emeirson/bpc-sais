@@ -78,6 +78,9 @@
                     <li>
                         <x-sidebar.link href="{{ route('rooms.index') }}">Rooms</x-sidebar.link>
                     </li>
+                    <li>
+                        <x-sidebar.link href="{{ route('year-levels.index') }}">Year Level</x-sidebar.link>
+                    </li>
                 </ul>
             </li>
             <li>

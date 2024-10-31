@@ -12,6 +12,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\YearLevelController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,6 +35,7 @@ Route::middleware([
     Route::resource('semesters', SemesterController::class);
     Route::resource('sections', SectionController::class);
     Route::resource('rooms', RoomController::class);
+    Route::resource('year-levels', YearLevelController::class);
     Route::get('programs/{program}/courses', [ProgramCoursesController::class, 'edit'])->name('program-courses.edit');
     Route::patch('programs/{program}/courses', [ProgramCoursesController::class, 'update'])->name('program-courses.update');
 });
