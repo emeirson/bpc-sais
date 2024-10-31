@@ -81,6 +81,9 @@
                     <li>
                         <x-sidebar.link href="{{ route('year-levels.index') }}">Year Level</x-sidebar.link>
                     </li>
+                    <li>
+                        <x-sidebar.link href="{{ route('class-course.index') }}">Class Course</x-sidebar.link>
+                    </li>
                 </ul>
             </li>
             <li>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AcademicYearController;
+use App\Http\Controllers\ClassCourseController;
 use App\Http\Controllers\CollegeController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
@@ -36,6 +37,7 @@ Route::middleware([
     Route::resource('sections', SectionController::class);
     Route::resource('rooms', RoomController::class);
     Route::resource('year-levels', YearLevelController::class);
+    Route::resource('class-course', ClassCourseController::class);
     Route::get('programs/{program}/courses', [ProgramCoursesController::class, 'edit'])->name('program-courses.edit');
     Route::patch('programs/{program}/courses', [ProgramCoursesController::class, 'update'])->name('program-courses.update');
 });
