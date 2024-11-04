@@ -22,6 +22,8 @@ return new class extends Migration
             $table->foreignIdFor(Instructor::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Semester::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Room::class)->constrained()->cascadeOnDelete();
+            $table->time('start_time');
+            $table->time('end_time');
             $table->timestamps();
         });
     }

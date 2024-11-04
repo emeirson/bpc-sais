@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClassCourseRequest;
+use App\Http\Requests\UpdateClassCourseRequest;
 use App\Models\ClassCourse;
 use App\Models\Course;
 use App\Models\Instructor;
@@ -57,15 +58,24 @@ class ClassCourseController extends Controller
      */
     public function edit(ClassCourse $classCourse)
     {
-        //
+        return view('class-course.edit', [
+            'class' => $classCourse,
+            'courses' => Course::all(),
+            'instructors' => Instructor::all(),
+            'rooms' => Room::all(),
+            'terms' => Semester::with('academicYear')->get(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ClassCourse $classCourse)
+    public function update(UpdateClassCourseRequest $request, ClassCourse $classCourse)
     {
-        //
+        $validatedData = $request->validated();
+        $classCourse->update($validatedData);
+
+        return redirect()->route('class-course.index')->with('success', 'Record updated successfully.');
     }
 
     /**
@@ -73,6 +83,8 @@ class ClassCourseController extends Controller
      */
     public function destroy(ClassCourse $classCourse)
     {
-        //
+        $classCourse->delete();
+
+        return redirect()->route('class-course.index')->with('success', 'Record removed successfully.');
     }
 }

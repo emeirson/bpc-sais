@@ -19,7 +19,7 @@
                 </svg>
                 <span class="sr-only">Toggle sidebar</span>
             </button>
-            <a href="https://flowbite.com" class="flex items-center justify-between mr-4">
+            <a href="{{ route('dashboard') }}" class="flex items-center justify-between mr-4">
                 <img src="{{ asset('images/bpc-logo.png') }}" class="mr-3 h-8" alt="Flowbite Logo" />
                 <span class="self-center italic font-semibold whitespace-nowrap dark:text-white">Bayambang Polytechnic
                     College</span>
