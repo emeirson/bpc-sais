@@ -72,9 +72,9 @@
                     <li>
                         <x-sidebar.link href="{{ route('semesters.index') }}">Semester</x-sidebar.link>
                     </li>
-                    <li>
+                    {{-- <li>
                         <x-sidebar.link href="{{ route('sections.index') }}">Section</x-sidebar.link>
-                    </li>
+                    </li> --}}
                     <li>
                         <x-sidebar.link href="{{ route('rooms.index') }}">Rooms</x-sidebar.link>
                     </li>
@@ -82,7 +82,7 @@
                         <x-sidebar.link href="{{ route('year-levels.index') }}">Year Level</x-sidebar.link>
                     </li>
                     <li>
-                        <x-sidebar.link href="{{ route('class-course.index') }}">Class Course</x-sidebar.link>
+                        <x-sidebar.link href="{{ route('class-course.index') }}">Class</x-sidebar.link>
                     </li>
                 </ul>
             </li>
@@ -190,7 +190,7 @@
                             d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
                             clip-rule="evenodd"></path>
                     </svg>
-                    <span class="ml-3">Docs</span>
+                    <span class="ml-3">Enrollment</span>
                 </a>
             </li>
             <li>

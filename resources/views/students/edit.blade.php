@@ -4,9 +4,20 @@
         <x-shared.breadcrump :menu="['Management', 'Student']" />
     </section>
 
-    <section class="bg-white dark:bg-gray-900 pb-20">
+    <section class="bg-white dark:bg-gray-900 pb-10">
         <div class="px-8 max-w-6xl">
-            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Edit: {{ $student->fullname() }}</h2>
+
+            <div class="flex justify-between items-center">
+                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Edit: {{ $student->fullname() }}</h2>
+                <form id="delete-form" action="{{ route('students.destroy', $student->id) }}" method="post">
+                    @csrf
+                    @method('Delete')
+                </form>
+                <button
+                    class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                    onclick="return confirm('Are you sure you want to delete this item?')" form="delete-form"
+                    name="Delete"> Delete </button>
+            </div>
             <form action="{{ route('students.update', $student) }}" method="post">
                 @csrf
                 @method('PATCH')
@@ -169,7 +180,8 @@
                                 <div class="sm:col-span-1">
                                     <x-form.label for="father_lastname" value="Lastname" />
                                     <x-form.input type='text' id="father_lastname" name="father_lastname"
-                                        value="{{ old('father_lastname', $student->father_lastname) }}" placeholder="Enter lastname" />
+                                        value="{{ old('father_lastname', $student->father_lastname) }}"
+                                        placeholder="Enter lastname" />
                                     <x-form.error for="father_lastname" />
                                 </div>
                                 <div class="sm:col-span-1">
@@ -232,37 +244,43 @@
                                 <div class="sm:col-span-1">
                                     <x-form.label for="mother_lastname" value="Lastname" />
                                     <x-form.input type='text' id="mother_lastname" name="mother_lastname"
-                                        value="{{ old('mother_lastname', $student->mother_lastname) }}" placeholder="Enter lastname" />
+                                        value="{{ old('mother_lastname', $student->mother_lastname) }}"
+                                        placeholder="Enter lastname" />
                                     <x-form.error for="mother_lastname" />
                                 </div>
                                 <div class="sm:col-span-1">
                                     <x-form.label for="mother_firstname" value="Firstname" />
                                     <x-form.input type='text' id="mother_firstname" name="mother_firstname"
-                                        value="{{ old('mother_firstname', $student->mother_firstname) }}" placeholder="Enter firstname" />
+                                        value="{{ old('mother_firstname', $student->mother_firstname) }}"
+                                        placeholder="Enter firstname" />
                                     <x-form.error for="mother_firstname" />
                                 </div>
                                 <div class="sm:col-span-1">
                                     <x-form.label for="mother_middlename" value="Middlename" />
                                     <x-form.input type='text' id="mother_middlename" name="mother_middlename"
-                                        value="{{ old('mother_middlename', $student->mother_middlename) }}" placeholder="Enter middlename" />
+                                        value="{{ old('mother_middlename', $student->mother_middlename) }}"
+                                        placeholder="Enter middlename" />
                                     <x-form.error for="mother_middlename" />
                                 </div>
                                 <div class="sm:col-span-1">
                                     <x-form.label for="mother_occupation" value="Occupation" />
                                     <x-form.input type='text' id="mother_occupation" name="mother_occupation"
-                                        value="{{ old('mother_occupation', $student->mother_occupation) }}" placeholder="Enter occupation" />
+                                        value="{{ old('mother_occupation', $student->mother_occupation) }}"
+                                        placeholder="Enter occupation" />
                                     <x-form.error for="mother_occupation" />
                                 </div>
                                 <div class="sm:col-span-2">
                                     <x-form.label for="mother_address" value="Address" />
                                     <x-form.input type='text' id="mother_address" name="mother_address"
-                                        value="{{ old('mother_address', $student->mother_address) }}" placeholder="Enter address" />
+                                        value="{{ old('mother_address', $student->mother_address) }}"
+                                        placeholder="Enter address" />
                                     <x-form.error for="mother_address" />
                                 </div>
                                 <div class="sm:col-span-1">
                                     <x-form.label for="mother_mobile_number" value="Mobile Number" />
                                     <x-form.input type='text' id="mother_mobile_number"
-                                        name="mother_mobile_number" value="{{ old('mother_mobile_number', $student->mobile_number) }}"
+                                        name="mother_mobile_number"
+                                        value="{{ old('mother_mobile_number', $student->mobile_number) }}"
                                         placeholder="Enter mobile number" />
                                     <x-form.error for="mother_mobile_number" />
                                 </div>
@@ -316,26 +334,30 @@
                                 <div class="sm:col-span-full">
                                     <x-form.label for="school_name" value="School Name" />
                                     <x-form.input type='text' id="school_name" name="school_name"
-                                        value="{{ old('school_name', $student->school_name) }}" placeholder="Enter school name" />
+                                        value="{{ old('school_name', $student->school_name) }}"
+                                        placeholder="Enter school name" />
                                     <x-form.error for="school_name" />
                                 </div>
                                 <div class="sm:col-span-full">
                                     <x-form.label for="school_address" value="School Address" />
                                     <x-form.input type='text' id="school_address" name="school_address"
-                                        value="{{ old('school_address', $student->school_address) }}" placeholder="Enter school address" />
+                                        value="{{ old('school_address', $student->school_address) }}"
+                                        placeholder="Enter school address" />
                                     <x-form.error for="school_address" />
                                 </div>
                                 <div class="sm:col-span-1">
                                     <x-form.label for="honors_received" value="Honor Received" />
                                     <x-form.input type='text' id="honors_received" name="honors_received"
-                                        value="{{ old('honors_received', $student->honors_received) }}" placeholder="Enter honor received" />
+                                        value="{{ old('honors_received', $student->honors_received) }}"
+                                        placeholder="Enter honor received" />
                                     <x-form.error for="honors_received" />
                                 </div>
                                 <div class="sm:col-span-1">
                                     <x-form.label for="year_graduated" value="Year Graduated" />
                                     <x-form.input type='number' id="year_graduated" name="year_graduated"
                                         min="1900" max="{{ date('Y') }}"
-                                        value="{{ old('year_graduated', $student->year_graduated) }}" placeholder="Enter year graduated" />
+                                        value="{{ old('year_graduated', $student->year_graduated) }}"
+                                        placeholder="Enter year graduated" />
                                     <x-form.error for="year_graduated" />
                                 </div>
                             </div>
@@ -345,6 +367,11 @@
 
                 <x-button.submit value="Update student" />
             </form>
+        </div>
+    </section>
+    <section class="bg-white dark:bg-gray-900 pb-10">
+        <div class="px-8 max-w-6xl">
+            {{-- <livewire:student-program-level-table :student="$student"/> --}}
         </div>
     </section>
 </x-layout.app>

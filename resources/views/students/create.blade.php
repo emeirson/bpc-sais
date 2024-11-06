@@ -325,6 +325,56 @@
                             </div>
                         </div>
                     </div>
+                    <h2 id="accordion-collapse-heading-4">
+                        <button type="button"
+                            class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                            data-accordion-target="#accordion-collapse-body-4" aria-expanded="true"
+                            aria-controls="accordion-collapse-body-4">
+                            <span>Chosen Academic Program</span>
+                            <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M9 5 5 1 1 5" />
+                            </svg>
+                        </button>
+                    </h2>
+                    <div id="accordion-collapse-body-4" class="hidden"
+                        aria-labelledby="accordion-collapse-heading-4">
+                        <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                            <div class="grid gap-4 sm:grid-cols-4 sm:gap-6">
+                                <div class="sm:col-span-2">
+                                    <x-form.label for="program_id" value="Program" />
+                                    <select name="program_id" id="program_id"
+                                        class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'>
+                                        @foreach ($programs as $program)
+                                            <option @selected(old('program_id') == $program->id) value="{{ $program->id }}">
+                                                {{ $program->description }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <x-form.label for="year_level_id" value="Year Level" />
+                                    <select name="year_level_id" id="year_level_id"
+                                        class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'>
+                                        @foreach ($levels as $level)
+                                            <option @selected(old('year_level_id') == $level->id) value="{{ $level->id }}">
+                                                {{ $level->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <x-form.label for="academic_year_id" value="Academic Year" />
+                                    <select name="academic_year_id" id="academic_year_id"
+                                        class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'>
+                                        @foreach ($academic_year as $year)
+                                            <option @selected(old('academic_year_id') == $year->id) value="{{ $year->id }}">
+                                                AY: {{ $year->getYear() }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <x-button.submit value="Add student" />

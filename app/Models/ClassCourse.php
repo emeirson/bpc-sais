@@ -40,4 +40,8 @@ class ClassCourse extends Model
 
         return $startTime . ' - ' . $endTime;
     }
+    public function students()
+    {
+        return $this->belongsToMany(Student::class)->withTimestamps();
+    }
 }

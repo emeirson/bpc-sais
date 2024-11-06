@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreStudentRequest;
-use App\Http\Requests\UpdateStudentRequest;
+use App\Models\Program;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
+use App\Models\AcademicYear;
+use App\Models\YearLevel;
 
 class StudentController extends Controller
 {
@@ -22,7 +25,11 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        return view('students.create', [
+            'levels' => YearLevel::all(),
+            'programs' => Program::all(),
+            'academic_year' => AcademicYear::all(),
+        ]);
     }
 
     /**
@@ -32,8 +39,11 @@ class StudentController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['student_code'] = Student::generateStudentId();
-        Student::create($validatedData);
-
+        $student = Student::create($validatedData);
+        $student->programs()->attach(request('program_id'), [
+            'year_level_id' => request('year_level_id'),
+            'academic_year_id' => request('academic_year_id')
+        ]);
         return redirect()->route('students.index')->with('success', 'New record has been saved!');
     }
 

@@ -3,7 +3,7 @@
     <section class="bg-white dark:bg-gray-900 p-3 sm:p-5">
         <x-shared.breadcrump :menu="['Management', 'Class']" />
     </section>
-    <section class="bg-white dark:bg-gray-900 pb-20">
+    <section class="bg-white dark:bg-gray-900 pb-10">
         <div class="px-8 max-w-6xl">
             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Editing: {{ $class->class_code }}</h2>
             <form action="{{ route('class-course.update', $class) }}" method="post">
@@ -73,8 +73,11 @@
                         <x-form.error for="end_time" />
                     </div>
                 </div>
-                <x-button.submit value="Update class" />
+                <x-button.submit value="Save changes" />
             </form>
         </div>
+    </section>
+    <section class="p-3">
+        <livewire:class-course-student-table :class="$class" />
     </section>
 </x-layout.app>
