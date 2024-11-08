@@ -87,11 +87,9 @@ class Student extends Model
         // Combine to form the new student ID
         return "{$year}-{$schoolCode}-{$newNumber}";
     }
-    public function programs()
+
+    public function enrollments()
     {
-        return $this->belongsToMany(Program::class, 'student_program_level')
-            ->withPivot('year_level_id')
-            ->withPivot('academic_year_id')
-            ->withTimestamps();
+        return $this->hasMany(Enrollment::class);
     }
 }

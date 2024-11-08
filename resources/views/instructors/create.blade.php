@@ -1,14 +1,4 @@
 <x-layout.app>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <section class="bg-white dark:bg-gray-900 p-3 sm:p-5">
         <x-shared.breadcrump :menu="['Management', 'Instructor']" />
     </section>

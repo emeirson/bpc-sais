@@ -77,7 +77,4 @@
             </form>
         </div>
     </section>
-    <section class="p-3">
-        <livewire:class-course-student-table :class="$class" />
-    </section>
 </x-layout.app>

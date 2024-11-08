@@ -1,9 +1,7 @@
 <?php
 
-use App\Models\AcademicYear;
-use App\Models\Program;
+use App\Models\ClassCourse;
 use App\Models\Student;
-use App\Models\YearLevel;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,13 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('student_program_level', function (Blueprint $table) {
+        Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Student::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(YearLevel::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(AcademicYear::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Program::class)->constrained()->cascadeOnDelete();
-            $table->integer('grade')->nullable();
+            $table->foreignIdFor(ClassCourse::class)->constrained()->cascadeOnDelete();
+            $table->float('grade')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('student_program_level');
+        Schema::dropIfExists('enrollments');
     }
 };

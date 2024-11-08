@@ -72,9 +72,9 @@
                     <li>
                         <x-sidebar.link href="{{ route('semesters.index') }}">Semester</x-sidebar.link>
                     </li>
-                    {{-- <li>
+                    <li>
                         <x-sidebar.link href="{{ route('sections.index') }}">Section</x-sidebar.link>
-                    </li> --}}
+                    </li>
                     <li>
                         <x-sidebar.link href="{{ route('rooms.index') }}">Rooms</x-sidebar.link>
                     </li>
@@ -180,7 +180,7 @@
         </ul>
         <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <li>
-                <a href="#"
+                <a href="{{ route('enrollment.index') }}"
                     class="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
                     <svg aria-hidden="true"
                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"

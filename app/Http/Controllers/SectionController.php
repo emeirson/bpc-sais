@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSectionRequest;
+use App\Models\Program;
 use App\Models\Section;
 use App\Models\Semester;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreSectionRequest;
 
 class SectionController extends Controller
 {
@@ -25,7 +26,7 @@ class SectionController extends Controller
     public function create()
     {
         return view('sections.create', [
-            'semesters' => Semester::all()
+            'programs' => Program::all()
         ]);
     }
 

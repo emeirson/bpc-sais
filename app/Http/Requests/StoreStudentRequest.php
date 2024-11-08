@@ -61,6 +61,9 @@ class StoreStudentRequest extends FormRequest
             'honors_received' => 'nullable|string|max:255',
             'year_graduated' => 'required|integer|min:1900|max:' . date('Y'),
 
+            'year_level_id' => 'required',
+            'academic_year_id' => 'required',
+            'program_id' => 'required'
         ];
     }
 }

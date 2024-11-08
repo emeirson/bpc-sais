@@ -28,6 +28,7 @@ class StoreClassCourseRequest extends FormRequest
             'instructor_id' => 'required',
             'semester_id' => 'required',
             'room_id' => 'required',
+            'section_id' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
         ];

@@ -14,6 +14,7 @@ class ClassCourse extends Model
         'instructor_id',
         'semester_id',
         'room_id',
+        'section_id',
         'start_time',
         'end_time',
     ];

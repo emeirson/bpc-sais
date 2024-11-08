@@ -22,7 +22,7 @@ class StoreSectionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'semester_id' => 'required',
+            'program_id' => 'required',
             'section_code' => 'required',
             'year_level' => 'required',
             'section'=> 'required',

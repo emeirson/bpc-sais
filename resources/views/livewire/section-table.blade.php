@@ -108,7 +108,7 @@
     </div>
     <div class="overflow-x-auto border">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <x-table.thead :headers="['#', 'section', 'Academic Year']" />
+            <x-table.thead :headers="['#', 'section',]" />
             <tbody>
 
                 @forelse ($sections as $section)
@@ -119,9 +119,6 @@
                         </x-table.data>
                         <x-table.data>
                             {{ $section->section_code }}
-                        </x-table.data>
-                        <x-table.data>
-                            AY : {{ $section->semester->academicYear->getYear() }}
                         </x-table.data>
                         <td class="px-4 py-3 flex items-center justify-end">
                             <button id="dropdown-button" data-dropdown-toggle="dropdown-{{ $loop->iteration }}"

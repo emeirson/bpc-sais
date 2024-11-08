@@ -4,6 +4,8 @@ use App\Models\Room;
 use App\Models\Course;
 use App\Models\Semester;
 use App\Models\Instructor;
+use App\Models\Program;
+use App\Models\Section;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -22,6 +24,7 @@ return new class extends Migration
             $table->foreignIdFor(Instructor::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Semester::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Room::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Section::class)->constrained()->cascadeOnDelete();
             $table->time('start_time');
             $table->time('end_time');
             $table->timestamps();

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Program;
 use App\Models\Student;
+use App\Models\YearLevel;
+use Illuminate\Support\Arr;
+use App\Models\AcademicYear;
 use Illuminate\Http\Request;
+use App\Models\StudentProgramLevel;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
-use App\Models\AcademicYear;
-use App\Models\YearLevel;
 
 class StudentController extends Controller
 {
@@ -39,11 +41,10 @@ class StudentController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['student_code'] = Student::generateStudentId();
-        $student = Student::create($validatedData);
-        $student->programs()->attach(request('program_id'), [
-            'year_level_id' => request('year_level_id'),
-            'academic_year_id' => request('academic_year_id')
-        ]);
+
+        $student = Student::create(Arr::except($validatedData, ['year_level_id', 'academic_year_id', 'program_id']));
+        StudentProgramLevel::create(Arr::only($validatedData, ['year_level_id', 'academic_year_id', 'program_id']) + ['student_id' => $student->id]);
+
         return redirect()->route('students.index')->with('success', 'New record has been saved!');
     }
 

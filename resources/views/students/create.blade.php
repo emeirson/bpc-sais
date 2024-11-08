@@ -351,6 +351,7 @@
                                                 {{ $program->description }}</option>
                                         @endforeach
                                     </select>
+                                    <x-form.error for="program_id" />
                                 </div>
                                 <div class="sm:col-span-1">
                                     <x-form.label for="year_level_id" value="Year Level" />
@@ -361,6 +362,7 @@
                                                 {{ $level->name }}</option>
                                         @endforeach
                                     </select>
+                                    <x-form.error for="year_level_id" />
                                 </div>
                                 <div class="sm:col-span-1">
                                     <x-form.label for="academic_year_id" value="Academic Year" />
@@ -371,6 +373,7 @@
                                                 AY: {{ $year->getYear() }}</option>
                                         @endforeach
                                     </select>
+                                    <x-form.error for="academic_year_id" />
                                 </div>
                             </div>
                         </div>

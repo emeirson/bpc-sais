@@ -6,7 +6,6 @@ use App\Http\Requests\StoreSemesterRequest;
 use App\Models\AcademicYear;
 use App\Models\Semester;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class SemesterController extends Controller
 {

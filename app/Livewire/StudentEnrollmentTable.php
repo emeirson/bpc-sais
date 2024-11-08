@@ -7,17 +7,14 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
-use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
-use PowerComponents\LivewirePowerGrid\Components\SetUp\Exportable;
 
-final class StudentsTable extends PowerGridComponent
+final class StudentEnrollmentTable extends PowerGridComponent
 {
-    use WithExport;
-
-    public string $tableName = 'students-table-5v2xlb-table';
+    public string $tableName = 'student-enrollment-table-awaub1-table';
 
     public function setUp(): array
     {
@@ -25,8 +22,7 @@ final class StudentsTable extends PowerGridComponent
 
         return [
             PowerGrid::header()
-                ->showSearchInput()
-                ->showToggleColumns(),
+                ->showSearchInput(),
             PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -82,7 +78,7 @@ final class StudentsTable extends PowerGridComponent
             ->add('school_address')
             ->add('honors_received')
             ->add('year_graduated')
-            ->add('created_at');
+            ->add('created', fn($model) => Carbon::parse($model->created_at)->diffForHumans());
     }
 
     public function columns(): array
@@ -111,7 +107,7 @@ final class StudentsTable extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at')
+            Column::make('Created at', 'created')
                 ->bodyAttribute('text-sm text-gray-500')
                 ->sortable()
                 ->searchable(),
@@ -130,21 +126,11 @@ final class StudentsTable extends PowerGridComponent
     {
         return [
             Button::add('edit')
-                ->slot('&#9998;')
+                ->slot('Enrollment')
                 ->id()
                 ->class('pg-btn-white text-xs dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->route('students.edit', ['student' => $row->id]),
-            Button::add('edit')
-                ->slot('Individual Report')
-                ->id()
-                ->class('pg-btn-white text-xs dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->route('students.edit', ['student' => $row->id]),
+                ->route('enrollment.create', ['student' => $row->id]),
         ];
-    }
-    public function getTableRowUrl($row)
-    {
-        // Define the URL that the row should redirect to
-        return route('student.edit', $row->id); // Or any dynamic URL
     }
 
     /*

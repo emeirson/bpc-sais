@@ -8,8 +8,8 @@ use App\Models\ClassCourse;
 use App\Models\Course;
 use App\Models\Instructor;
 use App\Models\Room;
+use App\Models\Section;
 use App\Models\Semester;
-use Illuminate\Http\Request;
 
 class ClassCourseController extends Controller
 {
@@ -31,6 +31,7 @@ class ClassCourseController extends Controller
             'instructors' => Instructor::all(),
             'rooms' => Room::all(),
             'terms' => Semester::with('academicYear')->get(),
+            'sections' => Section::all(),
         ]);
     }
 
@@ -86,5 +87,12 @@ class ClassCourseController extends Controller
         $classCourse->delete();
 
         return redirect()->route('class-course.index')->with('success', 'Record removed successfully.');
+    }
+
+    public function students(ClassCourse $classCourse)
+    {
+        return view('class-course.students', [
+            'class_course' => $classCourse
+        ]);
     }
 }

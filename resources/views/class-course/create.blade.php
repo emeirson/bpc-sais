@@ -60,6 +60,17 @@
                         <x-form.error for="room_id" />
                     </div>
                     <div class="sm:col-span-1">
+                        <x-form.label for="section_id" value="Section" />
+                        <select name="section_id" id="section_id"
+                            class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'>
+                            @foreach ($sections as $section)
+                                <option @selected(old('section_id') == $section->id) value="{{ $section->id }}">
+                                    {{ $section->section_code }}</option>
+                            @endforeach
+                        </select>
+                        <x-form.error for="section_id" />
+                    </div>
+                    <div class="sm:col-span-1">
                         <x-form.label for="start_time" value="Start Time" />
                         <x-form.input type='time' id="start_time" name="start_time"
                             value="{{ old('start_time', '06:00') }}" />

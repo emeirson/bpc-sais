@@ -16,7 +16,7 @@
                                 <option value="{{ $year->id }}">AY: {{ $year->start_year }}-{{ $year->end_year }}
                                 </option>
                             @empty
-                                <option>No Academic Year</option>
+                                <option value="">No Academic Year</option>
                             @endforelse
                         </select>
                         <div id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal"

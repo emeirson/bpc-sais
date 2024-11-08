@@ -10,18 +10,18 @@
                 @csrf
                 <div class="grid gap-4 sm:grid-cols-4 sm:gap-6">
                     <div class="sm:col-span-4">
-                        <x-form.label for="semester_id" value="Semester" />
-                        <select name="semester_id" id="semester_id"
+                        <x-form.label for="program_id" value="Program" />
+                        <select name="program_id" id="program_id"
                             class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'>
-                            @forelse ($semesters as $semester)
-                                <option value="{{ $semester->id }}">
-                                    {{ $semester->details() }}
+                            @forelse ($programs as $program)
+                                <option value="{{ $program->id }}">
+                                    {{ $program->description }}
                                 </option>
                             @empty
-                                <option>No Academic semester</option>
+                                <option value="">No Program</option>
                             @endforelse
                         </select>
-                        <x-form.error for="semester_id" />
+                        <x-form.error for="program_id" />
                     </div>
                     <div class="sm:col-span-1">
                         <x-form.label for="section_code" value="Code" />
